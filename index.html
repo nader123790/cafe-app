@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D O  C A F E | جاري التحويل</title>
+
+    <script>
+        // ==========================================
+        // 1. ضع رابط الموقع الجديد هنا مرة واحدة فقط
+        // ==========================================
+        const MY_NEW_LINK = "https://nimble-kulfi-838f6b.netlify.app/"; 
+
+        // دالة إنشاء الرابط مع كاسر الكاش
+        function getFreshURL() {
+            // إضافة رقم عشوائي كـ Parameter لضمان عدم استجابة الكاش القديم
+            const separator = MY_NEW_LINK.includes('?') ? '&' : '?';
+            return MY_NEW_LINK + separator + "nocache=" + new Date().getTime();
+        }
+
+        // تنفيذ التحويل فوراً بمجرد قراءة السكريبت
+        window.location.replace(getFreshURL());
+    </script>
+
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=https://YOUR-NEW-URL.com">
+    </noscript>
+
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #C5A059;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 25px;
+            background: #161616;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            max-width: 90%;
+        }
+        .loader {
+            border: 3px solid #222;
+            border-top: 3px solid #C5A059;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 25px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        h2 { margin-bottom: 10px; font-weight: 300; letter-spacing: 1px; }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            color: #000;
+            background-color: #C5A059;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover { transform: scale(1.05); background-color: #d4b477; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="loader"></div>
+        <h2>جاري فتح نظام DO CAFE</h2>
+        <p style="color: #888;">يتم الآن تحويلك للنسخة الأحدث...</p>
+        
+        <a id="autoBtn" href="#" class="btn">اضغط هنا إذا لم يتم تحويلك</a>
+    </div>
+
+    <script>
+        // ربط الرابط بالفانكشن في كل العناصر المتبقية
+        const finalUrl = getFreshURL();
+        
+        // تحديث زر التحويل اليدوي
+        const btn = document.getElementById('autoBtn');
+        btn.href = finalUrl;
+
+        // إرسال تنبيه للمتصفح بضرورة عدم الكاش (إضافي)
+        if ('replaceState' in history) {
+            history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
+</body>
+</html>
